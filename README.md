@@ -9,3 +9,8 @@ conda list --explicit > spec-list.txt
 To recreate the environment:
 
 conda create --name fallstudie --file spec-list.txt
+
+# Git Befehle
+git pull
+git commit -m "blablabla"
+git push
