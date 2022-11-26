@@ -12,5 +12,6 @@ conda create --name fallstudie --file spec-list.txt
 
 # Git Befehle
 git pull
+git stage * (eventuell)
 git commit -m "blablabla"
 git push
