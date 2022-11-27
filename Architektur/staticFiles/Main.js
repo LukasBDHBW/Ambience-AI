@@ -1,12 +1,18 @@
 // http handling
 
 function send_data(){
+    const formData = new FormData();
+
     var user_job = document.getElementById("user_job_input").value;
-    var user_data = [user_job];
-    //window.alert(user_job);
+    formData.append("job", user_job);
+
+    var user_img = document.getElementById("user_picture_input").files[0];
+    formData.append("image", user_img);
+
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://127.0.0.1:5000/api");
-    xhr.send(user_data);
+    xhr.send(formData);
 
 
     xhr.onreadystatechange = () => {

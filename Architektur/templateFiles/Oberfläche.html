@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Ambience AI</title>
-        <script type="text/javascript" src="./Main.js"></script>
+        <script type="text/javascript" src="../staticFiles/Main.js"></script>
     </head>
     <body>
         <header></header>
@@ -13,6 +13,8 @@
             <div id="input_handler">
                 <label for="user_job_input">Your job: </label>
                 <input type="text" id="user_job_input"><br><br>
+                <label for="user_picture_input">Upload image of your face here: </label>
+                <input type="file" id="user_picture_input" accept="image/*"><br><br>
                 <button type="Button" onclick="send_data()">Send data</button>
             </div>
 
