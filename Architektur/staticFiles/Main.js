@@ -18,7 +18,7 @@ function send_data(){
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
             response = xhr.responseText;
-            console.log(response);
+            document.getElementById("emotion_response").innerHTML=response;
         }
       }
     
