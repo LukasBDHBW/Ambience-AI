@@ -18,8 +18,20 @@
                 <button type="Button" onclick="send_data()">Send data</button>
             </div>
 
+            <div id="camera_handler">
+                <button id="start-camera" onclick="start_camera()">Start Camera</button>
+                <video id="video" width="320" height="240" autoplay></video>
+                <button id="click-photo" onclick="take_picture()">Click Photo</button>
+                <canvas id="canvas" width="320" height="240"></canvas>
+            </div>
+
             <div id="output_result">
                 <p id="emotion_response"></p>
+                <p id="age_response"></p>
+            </div>
+
+            <div id="banking_section">
+                <p id="banking_recommendation"></p>
             </div>
 
         </main>

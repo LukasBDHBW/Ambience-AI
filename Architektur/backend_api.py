@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import base64
 
 import tensorflow as tf
 from tensorflow import keras
@@ -8,6 +9,8 @@ from keras.preprocessing import image
 
 from PIL import Image, ImageOps
 
+import cv2
+import io
 
 
 model = keras.models.load_model('../Backend/Bild KI/ferNet.h5')
@@ -29,10 +32,11 @@ def loadFrontend():
 
 def generate_output():
     
-    form_data = request.form
-    user_image = request.files['image']
+    data = request.data
+    #nparr = np.fromstring(data.decode('base64'), np.uint8)
+    #user_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-    img = Image.open(user_image)
+    img = Image.open(io.BytesIO(base64.b64decode(data)))
     img2 = ImageOps.grayscale(img)
     img3 = img2.resize((48,48))
     img_array = tf.keras.utils.img_to_array(img3)
@@ -45,3 +49,15 @@ def generate_output():
     # banking_product = NeuralNetwork.calc_banking_product(user_image)   # So könnte das später aussehen
 
     return result
+
+
+@app.route("/api_banking", methods=['POST'])
+
+def give_recommendation():
+    
+    input_data = request.form # braucht die bestätigten Daten in neuem post request
+
+
+    # banking_product = NeuralNetwork.calc_banking_product(input_data)   # So könnte das später aussehen
+
+    return input_data
