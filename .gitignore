@@ -1,5 +1,7 @@
 *__pycache__
-#*.h5
+*.h5
 #*.jpg
 *.jpeg
 *.csv
+Backend/Bild KI/Age-Model/
+Backend/Bild KI/Emotion-Model/
