@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="WebApp.css">
         <meta charset="UTF-8">
         <title>Ambience AI</title>
         <script type="text/javascript" src="../staticFiles/Main.js"></script>
     </head>
     <body>
-        <div class="h_box">
-            <img src="./Ambience Ai.png" alt="Logo">
-            <div class="box">
             <header></header>
 
                 <main>
             
-                    <div class="div_b id="input_handler"> 
+                    <div id="input_handler">
+                        <label for="user_job_input">Your job: </label>
+                        <input type="text" id="user_job_input"><br><br>
+                        <label for="user_picture_input">Upload image of your face here: </label>
+                        <input type="file" id="user_picture_input" accept="image/*"><br><br>
                         <button type="Button" onclick="send_data()">Send data</button>
                     </div>
 
                     <div id="camera_handler">
-                        <div class="div_v"> 
-                            <div><video class="round" id="video" width="320" height="240" autoplay></video></div>
-                            <div><canvas class="round" id="canvas" width="320" height="240"></canvas></div>
-                        </div> 
-                        <div class="div_b">  
-                            <button id="start-camera" onclick="start_camera()">Start Camera</button>
-                            <button id="click-photo" onclick="take_picture()">Click Photo</button>
-                        </div>  
+                        <video class="round" id="video" width="320" height="240" autoplay></video>
+                        <canvas class="round" id="canvas" width="320" height="240"></canvas>  
+                        <button id="start-camera" onclick="start_camera()">Start Camera</button>
+                        <button id="click-photo" onclick="take_picture()">Click Photo</button>  
                     </div>
 
                     <div id="output_result">
