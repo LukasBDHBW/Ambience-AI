@@ -19,7 +19,7 @@ body {
 img {
   display: flex;
   width: 30%;
-  height: 30%;
+  height: auto;
   z-index: 1;
 }
 .box {
@@ -40,6 +40,8 @@ img {
 }
 .round{
   border-radius: 30px;
+  height: 100%;
+  width: 100%;
 }
 .div_v {
   display: flex;
