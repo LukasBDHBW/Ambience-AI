@@ -3,10 +3,10 @@
 function send_data(){
     const formData = new FormData();
 
-    var user_job = document.getElementById("user_job_input").value;
+
     var user_emotion = document.getElementById("emotion_response").value;
     var user_age = document.getElementById("age_response").value;
-    formData.append("job", user_job);
+
     formData.append("emotion", user_emotion);
     formData.append("age", user_age);
 
@@ -38,7 +38,7 @@ function take_picture() {
    	document.getElementById("canvas").getContext('2d').drawImage(document.getElementById("video"), 0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
  
     let image_base64 = document.querySelector("#canvas").toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, ""); 
-    console.log(image_base64)  
+    //console.log(image_base64)  
     var xhr = new XMLHttpRequest(),
         data = image_base64;
 

@@ -1,3 +1,4 @@
+# imports
 from flask import Flask, render_template, request
 import base64
 
@@ -9,12 +10,36 @@ from keras.preprocessing import image
 
 from PIL import Image, ImageOps
 
-import cv2
 import io
 
+from matplotlib import pyplot as plt
+from mtcnn.mtcnn import MTCNN
 
-model = keras.models.load_model('../Backend/Bild KI/Emotion-Model/ferNet.h5')
+import requests
+from tensorflow.keras.preprocessing import image
+from transformers import ViTFeatureExtractor, ViTForImageClassification
+
+
+# emotion recognition model
+model_emotion = keras.models.load_model('../Backend/Bild KI/Emotion-Model/ferNet.h5')
 # model from https://www.kaggle.com/code/anantgupt/facial-emotion-recogination-91-accuracy-train-set/notebook
+
+# age recognition model
+model_age = ViTForImageClassification.from_pretrained('../Backend/Bild KI/Age-Model')
+transforms = ViTFeatureExtractor.from_pretrained('../Backend/Bild KI/Age-Model')
+# model from huggingface
+
+# labels for age model output
+idlabel={
+    "0": "0-2",
+    "1": "3-9",
+    "2": "10-19",
+    "3": "20-29",
+    "4": "30-39",
+    "5": "40-49",
+    "6": "50-59",
+    "7": "60-69",
+    "8": "more than 70"}
 
 
 
@@ -32,22 +57,39 @@ def loadFrontend():
 
 def generate_output():
     
+    # getting image from post request
     data = request.data
-    #nparr = np.fromstring(data.decode('base64'), np.uint8)
-    #user_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
     img = Image.open(io.BytesIO(base64.b64decode(data)))
-    img2 = ImageOps.grayscale(img)
-    img3 = img2.resize((48,48))
-    img_array = tf.keras.utils.img_to_array(img3)
+
+
+    ### emotion recognition
+    # preprocessing for emotion recognition
+    #detector = MTCNN()
+    #face = detector.detect_faces(np.array(img))
+    #face_pixels = face[0]['box']
+    #face_img = img.crop((face_pixels[0], face_pixels[1], face_pixels[0]+face_pixels[2], face_pixels[1]+face_pixels[3]))
+    face_gray = ImageOps.grayscale(img)
+    face_resized = face_gray.resize((48,48))
+    img_array = tf.keras.utils.img_to_array(face_resized)
     img_batch = np.expand_dims(img_array,axis = 0)
 
-    prediction = model.predict(img_batch)
+    # applying prediction model
+    prediction = model_emotion.predict(img_batch)
     mapping_list = ['angry','disgust','fear','happy','neutral','sad','surprise']
-    result = mapping_list[prediction[0].argmax()]
+    result_emotion = mapping_list[prediction[0].argmax()]
 
-    # banking_product = NeuralNetwork.calc_banking_product(user_image)   # So könnte das später aussehen
 
+    ### age recognition
+    # Apply preprocessing and model
+    inputs = transforms(img, return_tensors='pt')
+    output = model_age(**inputs)
+    proba = output.logits.softmax(1) # Predicted Class probabilities
+    preds = proba.argmax(1) # Predicted Classes
+    result_age = idlabel[str(preds.item())]
+
+
+    ### create response with results
+    result = [result_emotion, result_age]
     return result
 
 
