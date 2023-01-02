@@ -13,7 +13,7 @@ import cv2
 import io
 
 
-model = keras.models.load_model('../Backend/Bild KI/ferNet.h5')
+model = keras.models.load_model('../Backend/Bild KI/Emotion-Model/ferNet.h5')
 # model from https://www.kaggle.com/code/anantgupt/facial-emotion-recogination-91-accuracy-train-set/notebook
 
 
