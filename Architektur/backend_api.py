@@ -99,7 +99,7 @@ def give_recommendation():
     
     input_data = request.form # braucht die bestätigten Daten in neuem post request
 
-
+    # branch test
     # banking_product = NeuralNetwork.calc_banking_product(input_data)   # So könnte das später aussehen
 
     return input_data
