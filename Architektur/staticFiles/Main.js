@@ -53,6 +53,8 @@ function take_picture() {
 
 function send_img() {
     let image_base64 = document.querySelector("#canvas").toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, ""); 
+    document.getElementById("second_view").style.display="None";
+    document.getElementById("third_view").style.display="inline";
     var xhr = new XMLHttpRequest(),
         data = image_base64;
 
@@ -64,7 +66,13 @@ function send_img() {
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
             response = xhr.responseText;
-            document.getElementById("emotion_response").innerHTML=response;
+            response = JSON.parse(response);
+            console.log(response);
+            document.getElementById("third_view").style.display="None";
+            document.getElementById("fourth_view").style.display="inline";
+            document.getElementById("age_response").innerHTML=response[1];
+            document.getElementById("emotion_response").innerHTML=response[0];
+
         }
     }
 }

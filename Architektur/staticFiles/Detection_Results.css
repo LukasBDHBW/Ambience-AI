@@ -1,0 +1,11 @@
+#fourth_view{
+    display: None;
+}
+
+#fourth_view > h1 {
+    width: 100%;
+}
+
+#fourth_view > p {
+    width: 100%;
+}

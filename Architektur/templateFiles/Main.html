@@ -3,10 +3,11 @@
     <head>
         <link rel="stylesheet" href="../staticFiles/Main.css">
         <link rel="stylesheet" href="../staticFiles/Camera.css">
+        <link rel="stylesheet" href="../staticFiles/Ladebalken.css">
+        <link rel="stylesheet" href="../staticFiles/Detection_Results.css">
         <meta charset="UTF-8">
         <title>Ambience AI</title>
         <script type="text/javascript" src="../staticFiles/Main.js"></script>
-        <script type="text/javascript" src="../staticFiles/Graphics.js"></script>
     </head>
     <body>
         <header>
@@ -29,11 +30,6 @@
 
         <main id="second_view">
             <div class="content">
-                <!--
-                <div class="div_b" id="input_handler"> 
-                    
-                </div>
-                -->
                 
 
                 <div id="camera_handler">
@@ -46,20 +42,41 @@
                         <button type="Button" id="send-data" onclick="send_img()">Send data</button> 
                     </div>  
                 </div>
-
             </div>
 
                 <!--
-                <div id="output_result">
-                    <p id="emotion_response"></p>
-                    <p id="age_response"></p>
-                </div>
-
                 <div id="banking_section">
                     <p id="banking_recommendation"></p>
                 </div>
                 -->            
         </main>
+
+
+        <main id="third_view">
+            <div class="content">
+                <!--Ladebalken-->
+            </div>
+        </main>
+
+
+        <main id="fourth_view">
+            <div class="content">
+                <h1>Results of age and emotion detection</h1>
+                <p>Please confirm or change the predictions: </p>
+                <div id="emotion_result">
+                    <p id = "emotion_response"></p>
+                </div>
+                <div id="age_result">
+                    <p id = "age_response"></p>
+                </div>
+
+            </div>
+        </main>
+
+
+
+
+
         <footer>
             <div></div>
             <a>Impressum</a>

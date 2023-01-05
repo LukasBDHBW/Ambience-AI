@@ -47,12 +47,18 @@ idlabel={
 app = Flask(__name__, template_folder='templateFiles', static_folder='staticFiles')
 
 
+# frontend pages
+
+# landing page + camera views
 @app.route("/home")
-
 def loadFrontend():
-    return render_template('Oberfläche.html')
+    return render_template('Main.html')
 
 
+
+
+
+# api's
 @app.route("/api", methods=['POST'])
 
 def generate_output():
