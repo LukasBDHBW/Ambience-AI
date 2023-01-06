@@ -6,8 +6,8 @@ function send_data(){
     const formData = new FormData();
 
 
-    var user_emotion = document.getElementById("emotion_response").value;
-    var user_age = document.getElementById("age_response").value;
+    var user_emotion = document.getElementById("emotion_dropdown").options[document.getElementById("emotion_dropdown").selectedIndex].text;
+    var user_age = document.getElementById("age_dropdown").options[document.getElementById("age_dropdown").selectedIndex].text;
 
     formData.append("emotion", user_emotion);
     formData.append("age", user_age);
@@ -22,6 +22,8 @@ function send_data(){
         if (xhr.readyState === 4) {
             response = xhr.responseText;
             document.getElementById("banking_recommendation").innerHTML=response;
+            document.getElementById("fourth_view").style.display="None";
+            document.getElementById("fifth_view").style.display="inline";
         }
       }
     
@@ -54,7 +56,7 @@ function take_picture() {
 function send_img() {
     let image_base64 = document.querySelector("#canvas").toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, ""); 
     document.getElementById("second_view").style.display="None";
-    document.getElementById("third_view").style.display="inline";
+    document.getElementById("fourth_view").style.display="inline"; // temporarily changed for live server !!!
     var xhr = new XMLHttpRequest(),
         data = image_base64;
 
@@ -68,10 +70,29 @@ function send_img() {
             response = xhr.responseText;
             response = JSON.parse(response);
             console.log(response);
-            document.getElementById("third_view").style.display="None";
-            document.getElementById("fourth_view").style.display="inline";
+
+
             document.getElementById("age_response").innerHTML=response[1];
             document.getElementById("emotion_response").innerHTML=response[0];
+
+            var dropdown_emotion = document.getElementById("emotion_dropdown");
+            for (var i=0; i<dropdown_emotion.options.length; i++){
+                if (dropdown_emotion.options[i].value == response[0]){
+                    dropdown_emotion.options[i].selected = true;
+                    break;
+                }
+            }
+
+            var dropdown_age = document.getElementById("age_dropdown");
+            for (var i=0; i<dropdown_age.options.length; i++){
+                if (dropdown_age.options[i].value == response[1]){
+                    dropdown_age.options[i].selected = true;
+                    break;
+                }
+            }
+
+            document.getElementById("third_view").style.display="None";
+            document.getElementById("fourth_view").style.display="inline";
 
         }
     }
