@@ -20,6 +20,7 @@
     height: 40vh;
     display: flex;
     justify-content: center;
+    
 }
 
 #emotion_result{
@@ -35,3 +36,15 @@
     justify-content: center;
 }
 
+select {
+  border: none;
+  width: 20vw;
+  height: 10%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: auto;
+  box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
