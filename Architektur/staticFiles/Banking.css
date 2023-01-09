@@ -1,3 +1,17 @@
 #fifth_view{
     display: None;
 }
+
+#headline_fifth_container{
+    display: flex;
+    justify-content: center;
+}
+
+#description_fifth_container{
+    display: flex;
+    justify-content: center;
+}
+
+#description_fifth{
+    text-align: center;
+}

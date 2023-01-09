@@ -22,6 +22,7 @@ function send_data(){
         if (xhr.readyState === 4) {
             response = xhr.responseText;
             document.getElementById("banking_recommendation").innerHTML=response;
+            //document.getElementById("product_info").innerHTML=product_descriptions[response];
             document.getElementById("fourth_view").style.display="None";
             document.getElementById("fifth_view").style.display="inline";
         }
@@ -72,8 +73,9 @@ function send_img() {
             console.log(response);
 
 
-            document.getElementById("age_response").innerHTML=response[1];
-            document.getElementById("emotion_response").innerHTML=response[0];
+            //document.getElementById("age_response").innerHTML=response[1];
+            //document.getElementById("emotion_response").innerHTML=response[0];
+            document.getElementById("fourth_big_result").innerHTML="Emotion: "+response[0]+", Age:"+response[1];
 
             var dropdown_emotion = document.getElementById("emotion_dropdown");
             for (var i=0; i<dropdown_emotion.options.length; i++){
@@ -97,4 +99,20 @@ function send_img() {
         }
     }
 }
-;
+
+function change_big_display_fourth(){
+    document.getElementById("fourth_big_result").innerHTML="Emotion: "+document.getElementById("emotion_dropdown").value+", Age:"+document.getElementById("age_dropdown").value;
+}
+
+
+let products = ["Girokonto","Gemeinschaftskonto","Kreditkarte","Tagesgeldkonto","Sparplan","Bausparplan",
+"Edelmetall Depot","Aktien Depot","Aktiensparplan","ETF Sparplan","Privatkredit","Umschuldung","Immobilienfinanzierung",
+"Immobilien","Hebel Zertifikate","Crypto","Lebensversicherung","Rentenversicherung","NFT","Berufsunfähigkeitsversicherung",
+"Crypto, Hebel Zertifikate","Immobilien, Bausparvertrag","Gemeinschaftskonto, Tagesgeldkonto","NFT, Crypto","Staatsanleihen","Bausparvertrag, Aktien Sparplan"];
+
+
+// zu jedem Produkt hier noch eine Info ergänzen
+let product_descriptions = {"Girokonto":"---","Gemeinschaftskonto":"---","Kreditkarte":"---","Tagesgeldkonto":"---","Sparplan":"---","Bausparplan":"---",
+"Edelmetall Depot":"---","Aktien Depot":"---","Aktiensparplan":"---","ETF Sparplan":"---","Privatkredit":"---","Umschuldung":"---","Immobilienfinanzierung":"---",
+"Immobilien":"---","Hebel Zertifikate":"---","Crypto":"---","Lebensversicherung":"---","Rentenversicherung":"---","NFT":"---","Berufsunfähigkeitsversicherung":"---",
+"Crypto, Hebel Zertifikate":"---","Immobilien, Bausparvertrag":"---","Gemeinschaftskonto, Tagesgeldkonto":"---","NFT, Crypto":"---","Staatsanleihen":"---","Bausparvertrag, Aktien Sparplan":"---"};

@@ -40,7 +40,7 @@
                     </div> 
                     <div class="div_b">  
                         <button id="click-photo" onclick="take_picture()">Click Photo</button>
-                        <button type="Button" id="send-data" onclick="send_img()">Send data</button> 
+                        <button type="Button" id="send-data" onclick="send_img()">Confirm</button> 
                     </div>  
                 </div>
             </div>
@@ -66,10 +66,13 @@
                     <div><h1>Results of age and emotion detection</h1></div>
                     <div><p>Please confirm or change the predictions: </p></div>
                 </div>
+                <div id="fourth_big_result_container">
+                    <h1 id="fourth_big_result"></h1>
+                </div>
                 <div id="fourth_result_container">
                     <div id="emotion_result">
                         <p id = "emotion_response"></p>
-                        <select name="emotion" id="emotion_dropdown">
+                        <select name="emotion" id="emotion_dropdown" onchange="change_big_display_fourth()">
                             <option value="happy">happy</option>
                             <option value="angry">angry</option>
                             <option value="sad">sad</option>
@@ -80,7 +83,7 @@
                     </div>
                     <div id="age_result">
                         <p id = "age_response"></p>
-                        <select name="age" id="age_dropdown">
+                        <select name="age" id="age_dropdown" onchange="change_big_display_fourth()">
                             <option value="10-19">10-19</option>
                             <option value="20-29">20-29</option>
                             <option value="30-39">30-39</option>
@@ -100,8 +103,17 @@
 
         <main id="fifth_view">
             <div class="content">
+                <div id="headline_fifth_container">
+                    <h1>Your recommended finance product</h1>
+                </div>
+                <div id="description_fifth_container">
+                    <p id="description_fifth">Note: This is the finance product recommended for you by our AI model based on your age and emotional situation.<br>You can proceed by looking at offerings or select a different product better suitable for you.</p>
+                </div>
                 <div id="final_result_container">
                     <p id="banking_recommendation"></p>
+                </div>
+                <div id="product_info_container">
+                    <p id="product_info"></p>
                 </div>
             </div>
         </main>
