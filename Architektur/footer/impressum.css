@@ -1,0 +1,30 @@
+.impressum{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    height: 90vh;
+    margin-left: 5%;
+    margin-right:5%;
+  }
+
+.beginn-text{
+    margin-top: 12vh;
+}
+
+.title{
+    margin-left: 5%;
+    margin-right:5%;
+    width: 90%;
+    border-top: 0.1vw solid gray
+  }
+.title > h1{
+    text-align: center;
+}
+
+  .logo{
+    position: fixed;
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
