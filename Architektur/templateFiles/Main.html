@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../staticFiles/Main.css">
+        <link rel="stylesheet" href="../staticFiles/Camera.css">
+        <link rel="stylesheet" href="../staticFiles/Ladebalken.css">
+        <link rel="stylesheet" href="../staticFiles/Detection_Results.css">
+        <link rel="stylesheet" href="../staticFiles/Banking.css">
+        <meta charset="UTF-8">
+        <title>Ambience AI</title>
+        <script type="text/javascript" src="../staticFiles/Main.js"></script>
+    </head>
+    <body>
+        <header>
+            
+            <img src="../staticFiles/Ambience Ai.png" alt="Logo">
+            
+        </header>
+
+
+
+        <main id="first_view">
+            <div class="content">
+                <div class="start_button_container">
+                    <button id="start-camera" onclick="start_camera()">Start Camera</button>
+                </div>
+            </div>
+        </main>
+        
+
+
+        <main id="second_view">
+            <div class="content">
+                
+
+                <div id="camera_handler">
+                    <div class="div_v"> 
+                        <div><video class="round" id="video" autoplay></video></div>
+                        <div><canvas class="round" id="canvas"></canvas></div>
+                    </div> 
+                    <div class="div_b">  
+                        <button id="click-photo" onclick="take_picture()">Click Photo</button>
+                        <button type="Button" id="send-data" onclick="send_img()">Send data</button> 
+                    </div>  
+                </div>
+            </div>
+
+                <!--
+                <div id="banking_section">
+                    <p id="banking_recommendation"></p>
+                </div>
+                -->            
+        </main>
+
+
+        <main id="third_view">
+            <div class="content">
+                <!--Ladebalken-->
+            </div>
+        </main>
+
+
+        <main id="fourth_view">
+            <div class="content">
+                <div id="fourth_text_container">
+                    <div><h1>Results of age and emotion detection</h1></div>
+                    <div><p>Please confirm or change the predictions: </p></div>
+                </div>
+                <div id="fourth_result_container">
+                    <div id="emotion_result">
+                        <p id = "emotion_response"></p>
+                        <select name="emotion" id="emotion_dropdown">
+                            <option value="happy">happy</option>
+                            <option value="angry">angry</option>
+                            <option value="sad">sad</option>
+                            <option value="neutral">neutral</option>
+                            <option value="surprise">surprise</option>
+                            <option value="fear">fear</option>
+                        </select>
+                    </div>
+                    <div id="age_result">
+                        <p id = "age_response"></p>
+                        <select name="age" id="age_dropdown">
+                            <option value="10-19">10-19</option>
+                            <option value="20-29">20-29</option>
+                            <option value="30-39">30-39</option>
+                            <option value="40-49">40-49</option>
+                            <option value="50-59">50-59</option>
+                            <option value="60-69">60-69</option>
+                            <option value="70+">70+</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="fourth_button">
+                    <button type="Button" onclick="send_data()">Confirm selected values</button>
+                </div>
+
+            </div>
+        </main>
+
+        <main id="fifth_view">
+            <div class="content">
+                <div id="final_result_container">
+                    <p id="banking_recommendation"></p>
+                </div>
+            </div>
+        </main>
+
+
+
+
+
+        <footer>
+            <div></div>
+            <a>Impressum</a>
+            <a>Über uns</a>
+            <a>Partner</a>
+        </footer>
+    </body>
+</html>

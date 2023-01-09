@@ -47,12 +47,18 @@ idlabel={
 app = Flask(__name__, template_folder='templateFiles', static_folder='staticFiles')
 
 
+# frontend pages
+
+# landing page + camera views
 @app.route("/home")
-
 def loadFrontend():
-    return render_template('Oberfläche.html')
+    return render_template('Main.html')
 
 
+
+
+
+# api's
 @app.route("/api", methods=['POST'])
 
 def generate_output():
@@ -99,7 +105,7 @@ def give_recommendation():
     
     input_data = request.form # braucht die bestätigten Daten in neuem post request
 
-
+    # branch test
     # banking_product = NeuralNetwork.calc_banking_product(input_data)   # So könnte das später aussehen
 
     return input_data

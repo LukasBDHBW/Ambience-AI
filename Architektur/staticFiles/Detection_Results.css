@@ -1,0 +1,37 @@
+#fourth_view{
+    display: None;
+}
+
+#fourth_text_container{
+    margin-top:5vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#fourth_text_container > div {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+
+#fourth_result_container{
+    margin-top:5vh;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+}
+
+#emotion_result{
+    margin-right: 20vw;
+}
+
+#age_result{
+    margin-left: 20vw;
+}
+
+#fourth_button{
+    display:flex;
+    justify-content: center;
+}
+
