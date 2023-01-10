@@ -93,7 +93,12 @@ def generate_output():
     output = model_age(**inputs)
     proba = output.logits.softmax(1) # Predicted Class probabilities
     preds = proba.argmax(1) # Predicted Classes
-    result_age = idlabel[str(preds.item())]
+    if int(preds)<=2:
+        result_age="Jung"
+    elif int(preds)>=7:
+        result_age="Alt"
+    else:
+        result_age="Erwachsen"
 
 
     ### create response with results
@@ -120,4 +125,4 @@ def give_recommendation():
     prediction = loaded_model.predict([[(age+1),(emotion+1)]])
     prediction = products[prediction[0]-1]
 
-    return input_data
+    return prediction

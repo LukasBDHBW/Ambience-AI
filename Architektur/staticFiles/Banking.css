@@ -15,3 +15,12 @@
 #description_fifth{
     text-align: center;
 }
+
+#final_result_container{
+    display: flex;
+    justify-content: center;
+}
+
+#banking_recommendation{
+    font-size:2.2vw;
+}

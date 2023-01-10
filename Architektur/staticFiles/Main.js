@@ -4,7 +4,8 @@
 
 function send_data(){
     const formData = new FormData();
-
+    document.getElementById("fourth_view").style.display="None";
+    document.getElementById("third_view").style.display="inline"; // wieder third view anzeigen für Ladebalken
 
     var user_emotion = document.getElementById("emotion_dropdown").options[document.getElementById("emotion_dropdown").selectedIndex].text;
     var user_age = document.getElementById("age_dropdown").options[document.getElementById("age_dropdown").selectedIndex].text;
@@ -23,7 +24,7 @@ function send_data(){
             response = xhr.responseText;
             document.getElementById("banking_recommendation").innerHTML=response;
             //document.getElementById("product_info").innerHTML=product_descriptions[response];
-            document.getElementById("fourth_view").style.display="None";
+            document.getElementById("third_view").style.display="None";
             document.getElementById("fifth_view").style.display="inline";
         }
       }
@@ -57,7 +58,7 @@ function take_picture() {
 function send_img() {
     let image_base64 = document.querySelector("#canvas").toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, ""); 
     document.getElementById("second_view").style.display="None";
-    document.getElementById("fourth_view").style.display="inline"; // temporarily changed for live server !!!
+    document.getElementById("third_view").style.display="inline"; // temporarily changed for live server !!!
     var xhr = new XMLHttpRequest(),
         data = image_base64;
 
