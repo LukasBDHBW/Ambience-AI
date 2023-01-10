@@ -13,6 +13,11 @@ header{
   align-items: center;
 }
 
+header > div{
+  display:flex;
+  justify-content: space-evenly;
+}
+
 
 img {
   display:flex;
