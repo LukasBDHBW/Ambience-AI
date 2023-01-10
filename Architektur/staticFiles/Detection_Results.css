@@ -36,6 +36,12 @@
     justify-content: center;
 }
 
+
+#fourth_big_result_container{
+    display:flex;
+    justify-content:center;
+}
+
 select {
   border: none;
   width: 20vw;
@@ -48,3 +54,4 @@ select {
   text-align: center;
   font-weight: bold;
 }
+

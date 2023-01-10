@@ -19,6 +19,8 @@ import requests
 from tensorflow.keras.preprocessing import image
 from transformers import ViTFeatureExtractor, ViTForImageClassification
 
+import pickle
+
 
 # emotion recognition model
 model_emotion = keras.models.load_model('../Backend/Bild KI/Emotion-Model/ferNet.h5')
@@ -91,7 +93,12 @@ def generate_output():
     output = model_age(**inputs)
     proba = output.logits.softmax(1) # Predicted Class probabilities
     preds = proba.argmax(1) # Predicted Classes
-    result_age = idlabel[str(preds.item())]
+    if int(preds)<=2:
+        result_age="Jung"
+    elif int(preds)>=7:
+        result_age="Alt"
+    else:
+        result_age="Erwachsen"
 
 
     ### create response with results
@@ -104,8 +111,18 @@ def generate_output():
 def give_recommendation():
     
     input_data = request.form # braucht die bestätigten Daten in neuem post request
+    age_input = input_data["age"]
+    emotions_input = input_data["emotion"]
+    loaded_model = pickle.load(open("../Backend/Neuronales Netz/product_model.sav", 'rb'))
+    products = ["Girokonto","Gemeinschaftskonto","Kreditkarte","Tagesgeldkonto","Sparplan","Bausparplan",
+                "Edelmetall Depot","Aktien Depot","Aktiensparplan","ETF Sparplan","Privatkredit","Umschuldung","Immobilienfinanzierung",
+                "Immobilien","Hebel Zertifikate","Crypto","Lebensversicherung","Rentenversicherung","NFT","Berufsunfähigkeitsversicherung",
+                "Crypto, Hebel Zertifikate","Immobilien, Bausparvertrag","Gemeinschaftskonto, Tagesgeldkonto","NFT, Crypto","Staatsanleihen","Bausparvertrag, Aktien Sparplan"]
+    emotions = ['angry','disgust','fear','happy','neutral','sad','surprise']
+    ages=["Jung","Erwachsen","Alt"]
+    age=ages.index(age_input)
+    emotion=emotions.index(emotions_input)
+    prediction = loaded_model.predict([[(age+1),(emotion+1)]])
+    prediction = products[prediction[0]-1]
 
-    # branch test
-    # banking_product = NeuralNetwork.calc_banking_product(input_data)   # So könnte das später aussehen
-
-    return input_data
+    return prediction
