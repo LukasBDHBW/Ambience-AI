@@ -1,11 +1,29 @@
 body {
   background: white;
-  overflow: hidden;
+  overflow: auto;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+}
+
+p{
+  font-size:1em;
+}
+
+h1{
+  font-size:1.4vw;
+}
+
+h2{
+  font-size:1.1vw;
 }
 
 header{
-  position: fixed;
-  width: 99%;
+  position:fixed;
+  background-color: white;
+  width: 100%;
   height: 12vh;
   display: flex;
   justify-content: center;
@@ -20,27 +38,29 @@ img {
 }
 
 .content{
+  margin-top:2vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 90vh;
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom:2vh;
 }
 
-footer{
+.footer{
   height: 8vh;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
-footer > a{
+.footer > a{
   color:gray;
   font-size: 0.9vw;
 }
 
-footer > div{
+.footer > div{
   margin-left: 5%;
   margin-right:5%;
   width: 90%;
