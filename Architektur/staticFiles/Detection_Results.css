@@ -20,14 +20,15 @@
     height: 40vh;
     display: flex;
     justify-content: center;
+    
 }
 
 #emotion_result{
-    margin-right: 20vw;
+    margin-right: 1vw;
 }
 
 #age_result{
-    margin-left: 20vw;
+    margin-left: 1vw;
 }
 
 #fourth_button{
@@ -35,8 +36,22 @@
     justify-content: center;
 }
 
+
 #fourth_big_result_container{
     display:flex;
     justify-content:center;
+}
+
+select {
+  border: none;
+  width: 20vw;
+  height: 10%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: auto;
+  box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
 }
 
