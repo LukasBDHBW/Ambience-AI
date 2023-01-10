@@ -56,7 +56,7 @@ function take_picture() {
 function send_img() {
     let image_base64 = document.querySelector("#canvas").toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, ""); 
     document.getElementById("second_view").style.display="None";
-    document.getElementById("fourth_view").style.display="inline"; // temporarily changed for live server !!!
+    document.getElementById("third_view").style.display="inline"; // temporarily changed for live server !!!
     var xhr = new XMLHttpRequest(),
         data = image_base64;
 
