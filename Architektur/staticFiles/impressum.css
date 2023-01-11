@@ -65,7 +65,7 @@
 ::-webkit-scrollbar {
   width: 0.5em;
   background-color: #F5F5F5;
-  height: 20vh;
+  height: 0.5em;
 }
 
 /* Add custom styles to the scrollbar thumb */
@@ -81,5 +81,22 @@ background-color: darkgray;
 
 .partner{
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+}
+.partner > div{
+  display: flex;
+  justify-content: center;
+  width:40%;
+  margin-right:5%;
+  margin-left:5%;}
+
+#db{
+  display: flex;
+    width:55%;
+    height: auto;
+}
+#commerz{
+  display: flex;
+  width:100%;
+  height: auto;
 }
