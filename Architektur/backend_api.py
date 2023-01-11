@@ -56,6 +56,20 @@ app = Flask(__name__, template_folder='templateFiles', static_folder='staticFile
 def loadFrontend():
     return render_template('Main.html')
 
+@app.route("/partner")
+def loadPartner():
+    return render_template('partner.html')
+
+@app.route("/impressum")
+def loadImpressum():
+    return render_template('impressum.html')
+
+@app.route("/ueber_uns")
+def loadUeberUns():
+    return render_template('ueber_uns.html')
+
+
+
 
 
 
