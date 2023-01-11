@@ -78,3 +78,8 @@ background-color: gray;
 ::-webkit-scrollbar-thumb:hover {
 background-color: darkgray;
 }
+
+.partner{
+  display: flex;
+  flex-wrap: wrap;
+}
