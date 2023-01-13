@@ -12,6 +12,15 @@
     justify-content: center;
 }
 
+#description_fifth_container > div{
+    display: flex;
+    justify-content: center;
+    border: solid lightgray;
+    border-radius: 10px;
+    padding-left: 0.1%;
+    padding-right: 0.1%;
+}
+
 #description_fifth{
     text-align: center;
 }
@@ -23,4 +32,15 @@
 
 #banking_recommendation{
     font-size:2.2vw;
+}
+
+#product_info_container{
+    display:flex;
+    justify-content:center;
+    border:solid lightblue;
+    border-radius:10px;
+}
+
+#product_info{
+    text-align:center;
 }

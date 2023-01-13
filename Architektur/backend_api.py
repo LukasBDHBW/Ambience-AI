@@ -56,6 +56,7 @@ app = Flask(__name__, template_folder='templateFiles', static_folder='staticFile
 def loadFrontend():
     return render_template('Main.html')
 
+
 @app.route("/partner")
 def loadPartner():
     return render_template('partner.html')

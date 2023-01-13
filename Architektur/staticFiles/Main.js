@@ -15,7 +15,7 @@ function send_data(){
 
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.0.0.1:5000/api_banking");
+    xhr.open("POST", "/api_banking");
     xhr.send(formData);
 
 
@@ -62,7 +62,7 @@ function send_img() {
     var xhr = new XMLHttpRequest(),
         data = image_base64;
 
-    xhr.open("POST", "http://127.0.0.1:5000/api");
+    xhr.open("POST", "/api");
 
     xhr.send(data);
 
@@ -104,7 +104,7 @@ function send_img() {
 }
 
 function change_big_display_fourth(){
-    document.getElementById("fourth_big_result").innerHTML="Emotion: "+document.getElementById("emotion_dropdown").options[document.getElementById("emotion_dropdown").selectedIndex].text+", Age:"+document.getElementById("age_dropdown").options[document.getElementById("age_dropdown").selectedIndex].text;
+    document.getElementById("fourth_big_result").innerHTML="Emotion: "+document.getElementById("emotion_dropdown").options[document.getElementById("emotion_dropdown").selectedIndex].text+", Alter:"+document.getElementById("age_dropdown").options[document.getElementById("age_dropdown").selectedIndex].text;
 }
 
 
