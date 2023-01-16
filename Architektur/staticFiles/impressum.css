@@ -82,13 +82,17 @@ background-color: darkgray;
 .partner{
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
-.partner > div{
+.banken-text{
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: justify;
+}
+.banken-bild-center{
   display: flex;
   justify-content: center;
-  width:40%;
-  margin-right:5%;
-  margin-left:5%;}
+}
 
 #db{
   display: flex;
