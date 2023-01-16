@@ -24,6 +24,7 @@ function send_data(){
             response = xhr.responseText;
             document.getElementById("banking_recommendation").innerHTML=response;
             document.getElementById("product_info").innerHTML=product_descriptions[response];
+            document.getElementById("offering_link").setAttribute("href", offering_links[response]);
             document.getElementById("third_view").style.display="None";
             document.getElementById("fifth_view").style.display="inline";
         }
@@ -143,3 +144,8 @@ let product_descriptions = {
     "Staatsanleihen":"Staatsanleihen, auch als 'Regierungsbindungen' bezeichnet, sind Schuldverschreibungen, die von Regierungen ausgegeben werden, um Geld aufzunehmen. Sie geben dem Anleger das Recht, eine feste Verzinsung und die Rückzahlung des geliehenen Kapitals zu einem festgelegten Zeitpunkt zu erhalten. Staatsanleihen werden in der Regel von Zentralbanken, institutionellen Anlegern und privaten Anlegern gekauft. Sie gelten als eine relativ sichere Anlagemöglichkeit, da sie von Regierungen ausgegeben werden und somit von der Bonität des jeweiligen Landes abhängig sind.",
     "Bausparvertrag, Aktien Sparplan":"Ein Bausparvertrag ist eine langfristige Sparform, bei der der Sparer regelmäßig Geld einzahlt und dafür später ein zinsgünstiges Baudarlehen erhält. Der Vertrag besteht aus zwei Phasen: der Ansparphase und der Tilgungsphase. In der Ansparphase zahlt der Sparer regelmäßig einen bestimmten Betrag ein und erhält hierfür eine Prämie. In der Tilgungsphase kann der Sparer das angesparte Kapital in Form eines zinsgünstigen Baudarlehens für die Finanzierung eines Bauvorhabens verwenden. Bauspardarlehen sind in Deutschland und einigen anderen Ländern sehr beliebt und werden oft als eine Art von staatlicher Förderung betrachtet.\nEin Aktien-Sparplan ist eine regelmäßige Sparform, bei der Anleger regelmäßig einen bestimmten Betrag in Aktien eines Unternehmens oder eines Aktienindexes investieren. Aktien-Sparpläne ermöglichen es Anlegern, automatisch in Aktien zu investieren und so von langfristigen Kurssteigerungen zu profitieren. Sie sind geeignet für Anleger, die langfristig in Aktien investieren möchten und keine großen Summen auf einmal anlegen können oder wollen."
 };
+
+let offering_links = {"Girokonto":"---","Gemeinschaftskonto":"---","Kreditkarte":"---","Tagesgeldkonto":"---","Sparplan":"---","Bausparplan":"---",
+"Edelmetall Depot":"---","Aktien Depot":"---","Aktiensparplan":"---","ETF Sparplan":"---","Privatkredit":"---","Umschuldung":"---","Immobilienfinanzierung":"---",
+"Immobilien":"---","Hebel Zertifikate":"---","Crypto":"---","Lebensversicherung":"---","Rentenversicherung":"---","NFT":"---","Berufsunfähigkeitsversicherung":"---",
+"Crypto, Hebel Zertifikate":"---","Immobilien, Bausparvertrag":"---","Gemeinschaftskonto, Tagesgeldkonto":"---","NFT, Crypto":"---","Staatsanleihen":"---","Bausparvertrag, Aktien Sparplan":"---"};

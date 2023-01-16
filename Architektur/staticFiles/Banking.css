@@ -44,3 +44,9 @@
 #product_info{
     text-align:center;
 }
+
+#fifth_button{
+    margin-top:3vh;
+    display:flex;
+    justify-content: center;
+}
