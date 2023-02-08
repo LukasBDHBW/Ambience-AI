@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="../staticFiles/Ambience Ai-Icon.png">
+        <link rel="stylesheet" href="../staticFiles/Main.css">
+        <link rel="stylesheet" href="../staticFiles/Camera.css">
+        <link rel="stylesheet" href="../staticFiles/Ladebalken.css">
+        <link rel="stylesheet" href="../staticFiles/Detection_Results.css">
+        <link rel="stylesheet" href="../staticFiles/Banking.css">
+        <meta charset="UTF-8">
+        <title>Ambience AI</title>
+        <script type="text/javascript" src="../staticFiles/Main.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="/home" >
+                <img src="../staticFiles/Ambience Ai.png" alt="Logo" >
+            </a>
+        </header>
+
+
+
+        <main id="first_view">
+            <div class="content">
+                <div class="start_button_container">
+                    <div class="center-camera"></div>
+                    <button id="start-camera" onclick="start_camera()">Kamera starten</button>
+                </div>
+            </div>
+        </main>
+
+
+
+        <main id="second_view">
+            <div class="content">
+
+
+                <div id="camera_handler">
+                    <div class="div_v">
+                        <div><video class="round" id="video" autoplay></video></div>
+                        <div><canvas class="round" id="canvas"></canvas></div>
+                    </div>
+                    <div class="div_b">
+                        <button id="click-photo" onclick="take_picture()">Foto machen</button>
+                        <button type="Button" id="send-data" onclick="send_img()">Bestätigen</button>
+                    </div>
+                </div>
+            </div>
+
+                <!--
+                <div id="banking_section">
+                    <p id="banking_recommendation"></p>
+                </div>
+                -->
+        </main>
+
+
+        <main id="third_view">
+            <div class="content">
+                <div class="loader">
+                    <div class="loader-inner">
+                      <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                      </div>
+                      <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                      </div>
+                      <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                      </div>
+                      <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                      </div>
+                      <div class="loader-line-wrap">
+                        <div class="loader-line"></div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </main>
+
+
+        <main id="fourth_view">
+            <div class="content">
+                <div id="fourth_text_container">
+                    <div><h1>Ergebnisse der Alters- und Emotionserkennung</h1></div>
+                    <div><p>Bitte bestätigen oder ändern Sie die Vorhersagen:</p></div>
+                </div>
+                <div id="fourth_big_result_container">
+                    <div>
+                        <h1 id="fourth_big_result"></h1>
+                    </div>
+                </div>
+                <div id="fourth_result_container">
+                    <div id="emotion_result">
+                        <p id = "emotion_response"></p>
+                        <select name="emotion" id="emotion_dropdown" onchange="change_big_display_fourth()">
+                            <option value="happy">glücklich</option>
+                            <option value="angry">verärgert</option>
+                            <option value="sad">traurig</option>
+                            <option value="neutral">neutral</option>
+                            <option value="surprise">überrascht</option>
+                            <option value="fear">ängstlich</option>
+                        </select>
+                    </div>
+                    <div id="age_result">
+                        <p id = "age_response"></p>
+                        <select name="age" id="age_dropdown" onchange="change_big_display_fourth()">
+                            <option value="Jung">Jung (14-19)</option>
+                            <option value="Erwachsen">Erwachsen (20-60)</option>
+                            <option value="Alt">Alt (60+)</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="fourth_button">
+                    <button type="Button" onclick="send_data()">Ausgewählte Werte bestätigen</button>
+                </div>
+
+            </div>
+        </main>
+
+        <main id="fifth_view">
+            <div class="content">
+                <div id="headline_fifth_container">
+                    <h1>Ihr empfohlenes Finanzprodukt</h1>
+                </div>
+                <div id="description_fifth_container">
+                    <div>
+                        <p id="description_fifth">Hinweis: Dies ist das Finanzprodukt, das unser KI-Modell auf der Grundlage Ihres Alters und Ihrer emotionalen Situation für Sie empfiehlt.<br>Sie können sich die Angebote ansehen oder ein anderes Produkt auswählen, das besser zu Ihnen passt.</p>
+                    </div>
+                </div>
+                <div id="final_result_container">
+                    <p id="banking_recommendation"></p>
+                </div>
+                <div id="product_info_container">
+                    <p id="product_info"></p>
+                </div>
+                <div id="fifth_button">
+                    <a id="offering_link" href="" target="_blank"><button type="Button">Angebot ansehen</button></a>
+                </div>
+            </div>
+        </main>
+
+
+
+
+
+        <footer class="footer">
+            <div></div>
+            <a href="/impressum">Impressum</a>
+            <a href="/ueber_uns">Über uns</a>
+            <a href="/banken">Banken</a>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+#fourth_view{
+    display: None;
+}
+
+#fourth_text_container{
+    margin-top:10vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#fourth_text_container > div {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+
+#fourth_result_container{
+    margin-top:5vh;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    
+}
+
+#emotion_result{
+    margin-right: 1vw;
+}
+
+#age_result{
+    margin-left: 1vw;
+}
+
+#fourth_button{
+    display:flex;
+    justify-content: center;
+}
+
+
+#fourth_big_result_container{
+    display:flex;
+    justify-content:center;
+}
+
+#fourth_big_result_container > div{
+    display:flex;
+    justify-content:center;
+    border: solid lightblue;
+    border-radius: 10px;
+    width:50%;
+}
+
+select {
+  border: solid lightblue;
+  width: 20vw;
+  height: 10%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1vw;
+  box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
