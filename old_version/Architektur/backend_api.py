@@ -1,5 +1,8 @@
 # imports
-from flask import Flask, render_template, request
+#from deepface import DeepFace
+import cv2
+
+from flask import Flask, render_template, request, redirect
 import base64
 
 import tensorflow as tf
@@ -22,33 +25,14 @@ from transformers import ViTFeatureExtractor, ViTForImageClassification
 import pickle
 
 
-# emotion recognition model
-model_emotion = keras.models.load_model('../Backend/Bild KI/Emotion-Model/ferNet.h5')
-# model from https://www.kaggle.com/code/anantgupt/facial-emotion-recogination-91-accuracy-train-set/notebook
-
-# age recognition model
-model_age = ViTForImageClassification.from_pretrained('../Backend/Bild KI/Age-Model')
-transforms = ViTFeatureExtractor.from_pretrained('../Backend/Bild KI/Age-Model')
-# model from huggingface
-
-# labels for age model output
-idlabel={
-    "0": "0-2",
-    "1": "3-9",
-    "2": "10-19",
-    "3": "20-29",
-    "4": "30-39",
-    "5": "40-49",
-    "6": "50-59",
-    "7": "60-69",
-    "8": "more than 70"}
-
-
 
 
 app = Flask(__name__, template_folder='templateFiles', static_folder='staticFiles')
 
 
+@app.route('/')
+def index():
+    return redirect('/home', code=301)
 # frontend pages
 
 # landing page + camera views
@@ -57,9 +41,9 @@ def loadFrontend():
     return render_template('Main.html')
 
 
-@app.route("/partner")
+@app.route("/banken")
 def loadPartner():
-    return render_template('partner.html')
+    return render_template('banken.html')
 
 @app.route("/impressum")
 def loadImpressum():
@@ -79,10 +63,36 @@ def loadUeberUns():
 @app.route("/api", methods=['POST'])
 
 def generate_output():
-    
+
+
+
+    # emotion recognition model
+    model_emotion = keras.models.load_model('./staticFiles/ferNet.h5')
+    # model from https://www.kaggle.com/code/anantgupt/facial-emotion-recogination-91-accuracy-train-set/notebook
+
+    # age recognition model
+    model_age = ViTForImageClassification.from_pretrained('./staticFiles/Age-Model')
+    transforms = ViTFeatureExtractor.from_pretrained('./staticFiles/Age-Model')
+    # model from huggingface
+
+    # labels for age model output
+    idlabel={
+        "0": "0-2",
+        "1": "3-9",
+        "2": "10-19",
+        "3": "20-29",
+        "4": "30-39",
+        "5": "40-49",
+        "6": "50-59",
+        "7": "60-69",
+        "8": "more than 70"}
+
+
     # getting image from post request
     data = request.data
     img = Image.open(io.BytesIO(base64.b64decode(data)))
+    #im_array = np.array(img)
+    #flipped_array = im_array[:,:,::-1]
 
 
     ### emotion recognition
@@ -100,8 +110,10 @@ def generate_output():
     prediction = model_emotion.predict(img_batch)
     mapping_list = ['angry','disgust','fear','happy','neutral','sad','surprise']
     result_emotion = mapping_list[prediction[0].argmax()]
-
-
+    #try:
+    #    result_emotion = DeepFace.analyze(flipped_array,actions = ['emotion'])["dominant_emotion"]
+    #except:
+    #    result_emotion = "sad"
     ### age recognition
     # Apply preprocessing and model
     inputs = transforms(img, return_tensors='pt')
@@ -128,7 +140,7 @@ def give_recommendation():
     input_data = request.form # braucht die bestätigten Daten in neuem post request
     age_input = input_data["age"]
     emotions_input = input_data["emotion"]
-    loaded_model = pickle.load(open("../Backend/Neuronales Netz/product_model.sav", 'rb'))
+    loaded_model = pickle.load(open("./staticFiles/product_model.sav", 'rb'))
     products = ["Girokonto","Gemeinschaftskonto","Kreditkarte","Tagesgeldkonto","Sparplan","Bausparplan",
                 "Edelmetall Depot","Aktien Depot","Aktiensparplan","ETF Sparplan","Privatkredit","Umschuldung","Immobilienfinanzierung",
                 "Immobilien","Hebel Zertifikate","Crypto","Lebensversicherung","Rentenversicherung","NFT","Berufsunfähigkeitsversicherung",
