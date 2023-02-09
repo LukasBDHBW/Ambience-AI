@@ -3,8 +3,6 @@
 #*.jpg
 *.jpeg
 *.csv
-old_version/Backend/Bild KI/Age-Model/
-old_version/Backend/Bild KI/Emotion-Model/
 data
 settings.json
 *.bin

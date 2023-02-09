@@ -70,8 +70,8 @@ def generate_output():
     # model from https://www.kaggle.com/code/anantgupt/facial-emotion-recogination-91-accuracy-train-set/notebook
 
     # age recognition model
-    model_age = ViTForImageClassification.from_pretrained('/home/ambienceai/mysite/staticFiles/Age-Model')
-    transforms = ViTFeatureExtractor.from_pretrained('/home/ambienceai/mysite/staticFiles/Age-Model')
+    model_age = ViTForImageClassification.from_pretrained('mysite/staticFiles/Age-Model')
+    transforms = ViTFeatureExtractor.from_pretrained('mysite/staticFiles/Age-Model')
     # model from huggingface
 
     # labels for age model output
