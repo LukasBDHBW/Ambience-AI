@@ -1,3 +1,4 @@
+/*CSS Konzept: Das Main.css stellt für jede View (main-tags) ein Grunddesign bereit. Spezifische Designs werden in den jeweiligen CSS Dateien für die View gesetzt.*/
 body {
   background: white;
   margin: 0;
@@ -143,7 +144,7 @@ button {
  .page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* make the container take up at least the full height of the viewport */
+  min-height: 100vh; 
 }
 
 .header, .footer {
@@ -153,12 +154,12 @@ button {
 }
 
 .header {
-  top: 0; /* position at the top of the screen */
+  top: 0; 
   height: 12vh;
 }
 
 .footer {
-  bottom: 0; /* position at the bottom of the screen */
+  bottom: 0; 
   height: 8vh;
   display: flex;
   justify-content: space-evenly;

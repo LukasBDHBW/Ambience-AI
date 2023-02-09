@@ -1,12 +1,31 @@
 # Ambience-AI
-Project for a web app that uses facial recognition age and state of mind to recommend a suitable banking product.
+Projekt für eine Webapp, die unter Nutzung von Emotions- und Alterserkennung geeignete Bankprodukte anhand eines Bildes empfiehlt
 
+# Aufbau des Github Repositories
+Das Repository gliedert sich in drei Hauptordner: Architektur, Frontend Design Konzept und Modell Konzeption.
+
+__Der gesamte für die lauffähige Applikation benötigte Code befindet sich im Architektur Ordner.__
+Die dort vorliegende Struktur ist so auch auf Pythonanywhere gehostet (nur bis 15.02.23).
+
+In den beiden anderen Ordnern finden sich Vorarbeiten, deren Ergebnisse im Entwicklungsprozess in die App integriert wurden. Der Ordner "Modell Konzeption" stellt die Schritte bis zur Integration übersichtlich dar und macht die Hintergründe des Bayesian Modells und des zugehörigen Datensatzes transparent und nachvollziebar.
+
+Der Architekturordner selbst enthält die Pythondatei, die die Flask App ausmacht (backend_api.py) sowie die HTML Dateien im Ordner templateFiles. Im Ordner staticFiles liegen neben CSS Dateien auch Graphiken und die Modelle.
+__Alters- und Emotionsmodell sind jedoch zu groß für GitHub, sodass diese manuell eingefügt werden müssen. Das Emotionsmodell kann einfach in den staticFiles Ordner kopiert werden, das Altersmodell in den Age-Model Ordner.__
+
+__Wichtige Hinweise zum grundlegenden Aufbau des Frontends finden sich in der Main.html sowie der Main.css.__
+
+
+
+
+
+
+# Übersicht über wichtige Befehle
 # Spec List
-If you need to reproduce an environment across computers with the same operating system, you can generate a spec list. For example, if you’re teaching a course and need to copy the environment for course exercises, the - -explicit option will produce a list of packages. To write the environment specifications to a file:
+Speichern der Enviroment-Spezifikationen in einer Datei:
 
 conda list --explicit > spec-list.txt
 
-To recreate the environment:
+Erstellung des Environments:
 
 conda create --name fallstudie --file spec-list.txt
 

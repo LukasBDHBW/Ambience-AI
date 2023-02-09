@@ -19,7 +19,10 @@
         </header>
 
 
+        <!--Konzept: Es gibt insgesamt 5 main-tags für die 5 verschiedenen Seiten, die beim Durchlauf der App angezeigt werden.
+                     Mit Javascript wird jeweils nur einer dieser "Views" auf aktiv gesetzt.-->
 
+        <!--1. View: Der "Start Kamera" Button-->             
         <main id="first_view">
             <div class="content">
                 <div class="start_button_container">
@@ -30,11 +33,10 @@
         </main>
         
 
-
+        <!--2. View: Seite zur Bildaufnahme-->   
         <main id="second_view">
             <div class="content">
                 
-
                 <div id="camera_handler">
                     <div class="div_v"> 
                         <div><video class="round" id="video" autoplay></video></div>
@@ -45,16 +47,13 @@
                         <button type="Button" id="send-data" onclick="send_img()">Bestätigen</button> 
                     </div>  
                 </div>
-            </div>
 
-                <!--
-                <div id="banking_section">
-                    <p id="banking_recommendation"></p>
-                </div>
-                -->            
+            </div>
+        
         </main>
 
 
+        <!--3. View: Der Ladebalken, wird insgesamt zweimal auf aktiv gesetzt (immer wenn Modell arbeiten muss)-->   
         <main id="third_view">
             <div class="content">
                 <div class="loader">
@@ -80,6 +79,7 @@
         </main>
 
 
+        <!--4. View: Ausgabe der Alters- und Emotionserkennung mit Anpassungsmöglichkeit-->   
         <main id="fourth_view">
             <div class="content">
                 <div id="fourth_text_container">
@@ -119,6 +119,8 @@
             </div>
         </main>
 
+
+        <!--5. View: Anzeigen des empfohlenen Finanzprodukts-->   
         <main id="fifth_view">
             <div class="content">
                 <div id="headline_fifth_container">
@@ -143,8 +145,7 @@
 
 
 
-
-
+        
         <footer class="footer">
             <div></div>
             <a href="/impressum">Impressum</a>

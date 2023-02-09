@@ -1,65 +1,33 @@
-
-
-// http handling
-
-function send_data(){
-    const formData = new FormData();
-    document.getElementById("fourth_view").style.display="None";
-    document.getElementById("third_view").style.display="inline"; // wieder third view anzeigen für Ladebalken
-
-    var user_emotion = document.getElementById("emotion_dropdown").value;
-    var user_age = document.getElementById("age_dropdown").value;
-
-    formData.append("emotion", user_emotion);
-    formData.append("age", user_age);
-
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/api_banking");
-    xhr.send(formData);
-
-
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
-            response = xhr.responseText;
-            document.getElementById("banking_recommendation").innerHTML=response;
-            document.getElementById("product_info").innerHTML=product_descriptions[response];
-            document.getElementById("offering_link").setAttribute("href", offering_links[response]);
-            document.getElementById("third_view").style.display="None";
-            document.getElementById("fifth_view").style.display="inline";
-        }
-      }
-    
-}
-
-
-// camera input handling
-
+// Start Kamera Button Klick-Verarbeitung
 async function start_camera () {
-    // DOM manipulation part
+    // andere View anzeigen
     document.getElementById("first_view").style.display="None";
     document.getElementById("second_view").style.display="inline";
 
-
-    // ================================== //
-    // functional part
+    // Bereitstellung der Kamerafunktion
    	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
 	document.getElementById("video").srcObject = stream;
 };
 
+// Bild machen Button Klick-Verarbeitung
 function take_picture() {
 
-
-
+    // Bild als Canvas Element zeichnen und dem Nutzer anzeigen
    	document.getElementById("canvas").getContext('2d').drawImage(document.getElementById("video"), 0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
  
 
 }
 
+// Bild an das Backend schicken, um Alter und Emotion vorherzusagen
 function send_img() {
+
+    // Encoding des Bildes
     let image_base64 = document.querySelector("#canvas").toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, ""); 
+    
+    // Anzeigen des Ladebalkens
     document.getElementById("second_view").style.display="None";
-    document.getElementById("third_view").style.display="inline"; // temporarily changed for live server !!!
+    document.getElementById("third_view").style.display="inline"; 
+
     var xhr = new XMLHttpRequest(),
         data = image_base64;
 
@@ -72,13 +40,9 @@ function send_img() {
         if (xhr.readyState === 4) {
             response = xhr.responseText;
             response = JSON.parse(response);
-            console.log(response);
+            //console.log(response);
 
-
-            //document.getElementById("age_response").innerHTML=response[1];
-            //document.getElementById("emotion_response").innerHTML=response[0];
-            //document.getElementById("fourth_big_result").innerHTML="Emotion: "+response[0]+", Age:"+response[1];
-
+            // Vorhergesagtes Alter und Emotion als Standardwerte in den Dropdown setzen
             var dropdown_emotion = document.getElementById("emotion_dropdown");
             for (var i=0; i<dropdown_emotion.options.length; i++){
                 if (dropdown_emotion.options[i].value == response[0]){
@@ -95,8 +59,10 @@ function send_img() {
                 }
             }
 
+            // Vorhersage zusätzlich noch groß als Text anzeigen
             change_big_display_fourth()
 
+            // Ladebalken verschwinden lassen und Ergebnis anzeigen
             document.getElementById("third_view").style.display="None";
             document.getElementById("fourth_view").style.display="inline";
 
@@ -104,18 +70,52 @@ function send_img() {
     }
 }
 
+// Ändern der groß angezeigten Vorhersage von Alter und Emotion
 function change_big_display_fourth(){
     document.getElementById("fourth_big_result").innerHTML="Emotion: "+document.getElementById("emotion_dropdown").options[document.getElementById("emotion_dropdown").selectedIndex].text+", Alter:"+document.getElementById("age_dropdown").options[document.getElementById("age_dropdown").selectedIndex].text;
 }
 
+// Bestätigtes Alter und Emotion an das Backend schicken für Bankproduktempfehlung
+function send_data(){
+    const formData = new FormData();
 
+    // wieder third view anzeigen für Ladebalken
+    document.getElementById("fourth_view").style.display="None";
+    document.getElementById("third_view").style.display="inline"; 
+
+    var user_emotion = document.getElementById("emotion_dropdown").value;
+    var user_age = document.getElementById("age_dropdown").value;
+
+    formData.append("emotion", user_emotion);
+    formData.append("age", user_age);
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api_banking");
+    xhr.send(formData);
+
+    // Bei Serverresponse werden Bankprodukt und Beschreibung in das HTML eingebunden und der Ladebalken (third_view) verschwindet
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            response = xhr.responseText;
+            document.getElementById("banking_recommendation").innerHTML=response;
+            document.getElementById("product_info").innerHTML=product_descriptions[response];
+            document.getElementById("offering_link").setAttribute("href", offering_links[response]);
+            document.getElementById("third_view").style.display="None";
+            document.getElementById("fifth_view").style.display="inline";
+        }
+      }
+    
+}
+
+
+// Alle Bankprodukte
 let products = ["Girokonto","Gemeinschaftskonto","Kreditkarte","Tagesgeldkonto","Sparplan","Bausparplan",
 "Edelmetall Depot","Aktien Depot","Aktiensparplan","ETF Sparplan","Privatkredit","Umschuldung","Immobilienfinanzierung",
 "Immobilien","Hebel Zertifikate","Crypto","Lebensversicherung","Rentenversicherung","NFT","Berufsunfähigkeitsversicherung",
 "Crypto, Hebel Zertifikate","Immobilien, Bausparvertrag","Gemeinschaftskonto, Tagesgeldkonto","NFT, Crypto","Staatsanleihen","Bausparvertrag, Aktien Sparplan"];
 
-
-// zu jedem Produkt hier noch eine Info ergänzen
+// zu jedem Produkt steht hier die Beschreibung
 let product_descriptions = {
     "Girokonto":"Ein Girokonto ist ein kostenloses Bankkonto, das jeder Person zur Verfügung steht. Es ermöglicht das Empfangen und Überweisen von Geld, das Abheben von Bargeld an Automaten sowie das Bezahlen von Rechnungen und Einkäufen mit einer Bankkarte oder einer EC-Karte. Meistens wird eine kostenlose Visa- oder Mastercard-Debitkarte ausgegeben, die das Abheben von Bargeld und das Bezahlen von Einkäufen ermöglicht. Einige Banken bieten zusätzliche Funktionen wie das Online-Banking, Kreditkarten und Scheckbücher an.",
     "Gemeinschaftskonto":"Ein Gemeinschaftskonto, auch als Partnerschaftskonto bezeichnet, ist ein Bankkonto, das von zwei oder mehreren Personen gemeinsam genutzt wird. Es ermöglicht es allen Inhabern, Geld auf das Konto einzuzahlen, abzuheben und Überweisungen vorzunehmen. Es ist besonders nützlich für Paare oder Geschäftspartner, die gemeinsam Finanzen verwalten möchten. Oft erfordert es eine gemeinsame Unterschrift, um Transaktionen durchzuführen. Einige Banken bieten auch die Möglichkeit, separate Zugriffsrechte für jeden Inhaber festzulegen.",
@@ -145,6 +145,7 @@ let product_descriptions = {
     "Bausparvertrag, Aktien Sparplan":"Ein Bausparvertrag ist eine langfristige Sparform, bei der der Sparer regelmäßig Geld einzahlt und dafür später ein zinsgünstiges Baudarlehen erhält. Der Vertrag besteht aus zwei Phasen: der Ansparphase und der Tilgungsphase. In der Ansparphase zahlt der Sparer regelmäßig einen bestimmten Betrag ein und erhält hierfür eine Prämie. In der Tilgungsphase kann der Sparer das angesparte Kapital in Form eines zinsgünstigen Baudarlehens für die Finanzierung eines Bauvorhabens verwenden. Bauspardarlehen sind in Deutschland und einigen anderen Ländern sehr beliebt und werden oft als eine Art von staatlicher Förderung betrachtet.\nEin Aktien-Sparplan ist eine regelmäßige Sparform, bei der Anleger regelmäßig einen bestimmten Betrag in Aktien eines Unternehmens oder eines Aktienindexes investieren. Aktien-Sparpläne ermöglichen es Anlegern, automatisch in Aktien zu investieren und so von langfristigen Kurssteigerungen zu profitieren. Sie sind geeignet für Anleger, die langfristig in Aktien investieren möchten und keine großen Summen auf einmal anlegen können oder wollen."
 };
 
+// Alle Angebotslinks
 let offering_links = {"Girokonto":"https://www.deutsche-bank.de/pk/konto-und-karte/konten-im-ueberblick/konten-im-vergleich.html","Gemeinschaftskonto":"https://service.commerzbank.de/wie-eroeffne-ich-ein-gemeinschaftskonto","Kreditkarte":"https://www.commerzbank.de/konten-zahlungsverkehr/produkte/kreditkarten","Tagesgeldkonto":"https://service.commerzbank.de/wie-eroeffne-ich-ein-gemeinschaftskonto","Sparplan":"https://www.deutsche-bank.de/pk/kredit-und-immobilien/eigenheim/bauspar-angebote.html","Bausparplan":"https://www.deutsche-bank.de/pk/kredit-und-immobilien/eigenheim/bauspar-angebote.html",
 "Edelmetall Depot":"https://www.commerzbank.de/de/hauptnavigation/kunden/kursinfo/sorten_edel/edelmetalle/edelmetall.html","Aktien Depot":"https://www.deutsche-bank.de/pk/sparen-und-anlegen/geldanlage-online/depot.html","Aktiensparplan":"https://www.deutsche-bank.de/pk/kredit-und-immobilien/eigenheim/bauspar-angebote.html","ETF Sparplan":"---","Privatkredit":"https://www.deutsche-bank.de/pk/kredit-und-immobilien/kredit/privatkredit.html","Umschuldung":"---","Immobilienfinanzierung":"https://www.commerzbank.de/kredit-finanzierung/wissen/baufinanzierung/immobiliensuche",
 "Immobilien":"https://www.commerzbank.de/kredit-finanzierung/wissen/baufinanzierung/immobiliensuche","Hebel Zertifikate":"https://www.commerzbank.de/portal/de/privatkunden/sparen-anlegen/produkte/wertpapiere/zertifikate/zertifikate.html","Crypto":"https://crypto.com","Lebensversicherung":"https://www.commerzbank.de/vorsorgen-versichern/produkte/versicherungen/risikolebensversicherung","Rentenversicherung":"https://www.commerzbank.de/vorsorgen-versichern/produkte/altersvorsorge/privatrente","NFT":"https://crypto.com","Berufsunfähigkeitsversicherung":"https://www.deutsche-bank.de/pk/versichern-und-vorsorgen/gesundheit-und-pflege/einkommensabsicherung.html",
